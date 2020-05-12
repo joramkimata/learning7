@@ -1,4 +1,4 @@
-#Install Apache, PHP and MySQL
+# Install Apache, PHP and MySQL
 
 1. apt update
 2. apt install apache2 apache2-utils curl mysql-server mysql-client php libapache2-mod-php php-mysql php-common php-mbstring php-xmlrpc php-soap php-gd php-xml php-mysql php-cli php-mcrypt php-zip -y
