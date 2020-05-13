@@ -120,6 +120,48 @@ chmod -R 755 /var/www/<todoapp-git-repo>
 chmod -R 777 /var/www/<todoapp-git-repo>/storage
 ```
 
+## Configure Apache
+
+Open the following file with your favourite text editor:
+
+```
+nano /etc/apache2/sites-enabled/000-default.conf
+```
+
+- Adjust the document root with the correct path to your Laravle public folder:
+
+```
+DocumentRoot /var/www/<todoapp-git-repo>/public
+```
+
+- Setup the server to accept the .htaccess file
+
+```
+<Directory /var/www/project/public>
+        Require all granted
+        AllowOverride All
+</Directory>
+ ```
+ 
+ - After that we have to enable mod_rewrite, we can do that with this command here:
+ 
+ ```
+ a2enmod rewrite
+ ```
+ 
+ - After those changes make sure to run a config test and then restart apache
+ 
+ ```
+ apachectl configtest
+ ```
+ 
+ - Restart Apache:
+ 
+ ```
+ apachectl restart
+ ```
+ 
+
 ## Step 4 – Create Environment Settings
 
 ```
