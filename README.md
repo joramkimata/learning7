@@ -49,3 +49,34 @@ chmod -R 755 /var/www/<todoapp-git-repo>
 chmod -R 777 /var/www/<todoapp-git-repo>/storage
 ```
 
+## Step 4 – Create Environment Settings
+
+```
+mv .env.example .env
+```
+
+```
+php artisan key:generate
+```
+
+## Step 5 – Create MySQL User and Database
+
+```
+CREATE DATABASE laravel;
+CREATE USER 'laravel'@'localhost' IDENTIFIED BY 'secret';
+GRANT ALL ON laravel.* to 'laravel'@'localhost';
+FLUSH PRIVILEGES;
+quit
+```
+
+### Then edit .env on db connection part
+
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laravel
+DB_USERNAME=laravel
+DB_PASSWORD=secret
+```
+
