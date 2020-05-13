@@ -1,40 +1,51 @@
-# Install Apache, PHP and MySQL
 
-1. apt update
-2. apt install apache2 apache2-utils curl mysql-server mysql-client php libapache2-mod-php php-mysql php-common php-mbstring php-xmlrpc php-soap php-gd php-xml php-mysql php-cli php-mcrypt php-zip -y
-3. access http://<IP> 
+# How to Install Laravel on Ubuntu 20.04 - Using Apache2
 
-## Install Composer
+## Step 1 – Installing LAMP Stack
 
-1. apt install composer
-2. Then run composer
-
-## Install Laravel 
-
-1. cd /var/www/
-2. Using git or filezilla
-
-## Configure Apache
-
-1. Edit ```nano /etc/apache2/sites-enabled/000-default.conf```
-2. add ```DocumentRoot /var/www/project/public```
-3. Setup server to accept .htaccess file as shown below
+### Install PHP
 
 ```
-<Directory /var/www/project/public>
-        Require all granted
-        AllowOverride All
-</Directory>
+sudo apt install software-properties-common
+sudo add-apt-repository ppa:ondrej/php
+sudo apt install -y php7.4 php7.4-gd php7.4-mbstring php7.4-xml
 ```
 
-4. Enable rewrite module ```a2enmod rewrite```
-5. Confirm everything is OK!, ```apachectl configtest``` && ```apachectl restart```
-6. Access the project again, ```http://<IP>```
+### Apache2
 
-## Configure MySQL
+```
+sudo apt install apache2 libapache2-mod-php7.4
+```
 
-1. mysql_secure_installation
-2. mysql -u root -p
-3. nano /var/www/project/.env
+### Install MySQL
 
-                
+```
+sudo apt install mysql-server php7.4-mysql
+```
+
+## Step 2 – Installing Composer
+
+```
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
+sudo chmod +x /usr/local/bin/composer
+```
+
+## Step 3 – Install Laravel project i.e TodoApp
+
+```
+cd /var/www
+git clone <todoapp-git-repo>.git
+```
+
+```
+cd /var/www/<todoapp-git-repo>
+sudo composer install
+```
+
+```
+chown -R www-data.www-data /var/www/<todoapp-git-repo>
+chmod -R 755 /var/www/<todoapp-git-repo>
+chmod -R 777 /var/www/<todoapp-git-repo>/storage
+```
+
