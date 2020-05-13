@@ -53,18 +53,23 @@ sudo mysql
 sudo mysql
 ```
 
-- Then run the commands below to change to disable mysql_native_password module..
+-  check which authentication method each of your MySQL user accounts use with the following command
 
 ```
-USE mysql;
-UPDATE user SET plugin='' WHERE user ='root';
+SELECT user,authentication_string,plugin,host FROM mysql.user;
 ```
 
-- The save your changes and exit:
+-  you can see that the root user does in fact authenticate using the auth_socket plugin.
+
+```
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+
+```
+
+- Then, run FLUSH PRIVILEGES which tells the server to reload the grant tables and put your new changes into effect:
 
 ```
 FLUSH PRIVILEGES;
-EXIT;
 ```
 
 - You should be prompted for password when you want to access MariaDB console.
