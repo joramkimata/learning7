@@ -29,14 +29,57 @@ sudo apt install mysql-server php7.4-mysql
 sudo mysql_secure_installation
 ```
 
-<i>Even though you configured a password above, when you run the commands below you will be granted access without requiring a password.</i>
+- Even though you configured a password above, when you run the commands below you will be granted access without requiring a password.
 
 ```
 sudo mysql
 ```
 
 - You’ll automatically be granted access.
+- This happens because the current version 8.0 comes with a feature that provides root authentication via a ``auth_socket`` plugin.
+- This plugin authenticates users who connect from the localhost via socket file without prompting or a password.
+- This can cause issues with some apps that need to connect to the database via root. To fix that, you’ll need to change the default authentication mechanism from ``auth_socket`` to ``mysql_native_password``.
+- Login back into MariaDB console.
 
+```
+sudo mysql
+```
+
+- Then run the commands below to change to disable mysql_native_password module..
+
+```
+USE mysql;
+UPDATE user SET plugin='' WHERE user ='root';
+```
+
+- The save your changes and exit:
+
+```
+FLUSH PRIVILEGES;
+EXIT;
+```
+
+- You should be prompted for password when you want to access MariaDB console.
+
+```
+sudo mysql -u root -p
+```
+
+- Since you don’t want to use MariaDB root user for external applications to connect, you should probably create an admin account separate from the root user.
+
+```
+GRANT ALL PRIVILEGES ON *.* TO 'superadmin'@'localhost' IDENTIFIED BY 'very_strong_password';
+```
+
+### Install phpMyAdmin
+
+```
+sudo apt install phpmyadmin
+```
+
+- When prompted to choose the webserver, selecat ``apache2`` and continue.
+- When prompted again to allow debconfig-common to install a database and configure select ``No``.
+- Now, open your web browser and login to the server ``hostname or IP address`` followed by ``phpmyadmin`` i.e `` http://<ip-address>/phpmyadmin``
 
 ## Step 2 – Installing Composer
 
