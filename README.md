@@ -31,6 +31,12 @@ sudo mysql_secure_installation
 
 <i>Even though you configured a password above, when you run the commands below you will be granted access without requiring a password.</i>
 
+```
+sudo mysql
+```
+
+- You’ll automatically be granted access.
+
 
 ## Step 2 – Installing Composer
 
