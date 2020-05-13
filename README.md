@@ -1,6 +1,14 @@
 
 # How to Install Laravel on Ubuntu 20.04 - Using Apache2
 
+#### Requirements
+
+- Git on linux server if not found run
+
+```
+sudo apt install git
+```
+
 ## Step 1 – Installing LAMP Stack
 
 ### Install PHP
