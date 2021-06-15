@@ -113,6 +113,11 @@ git clone <todoapp-git-repo>.git
 cd /var/www/<todoapp-git-repo>
 sudo composer install
 ```
+If you find any error please run the following
+
+```
+apt install php7.4-mysql
+```
 
 ```
 chown -R www-data.www-data /var/www/<todoapp-git-repo>
