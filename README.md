@@ -116,7 +116,7 @@ sudo composer install
 If you find any error please run the following
 
 ```
-apt install php7.4-mysql
+apt install php7.4-zip
 ```
 
 ```
