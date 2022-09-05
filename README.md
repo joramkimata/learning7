@@ -33,9 +33,6 @@ sudo apt install mysql-server php7.4-mysql
 
 ### Secure MySQL Server
 
-```
-sudo mysql_secure_installation
-```
 
 - Even though you configured a password above, when you run the commands below you will be granted access without requiring a password.
 
